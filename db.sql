@@ -8,6 +8,14 @@ create database if not exists daton;
 use daton;
 
 
+create table admins (
+    id int auto_increment,
+    name varchar(34) not null,
+    password varchar(200)not null,
+    admin_type enum('ADMIN','SUPER_ADMIN') default 'ADMIN',
+    primary key(id)
+);
+
 create table patients (
     id int auto_increment,
     name varchar(34) not null,
@@ -45,17 +53,16 @@ create table staff(
     primary key(id)
 );
 
-create table requests (
+create table organ_requests (
     id int auto_increment,
     request_for enum('BLOOD', 'ORGAN'),
     institution_from int,
     institution_to int,
     patient_id int,
-    request_from ENUM('PATIENT','HOSPITAL'),
-    broadcast enum('TRUE','FALSE'),
+    broadcast boolean,
+    sorted boolean default false,
     request_text longtext,
-    date_of_request datetime, 
-    foreign key(institution_to) references institutions(id),
+    date_of_request datetime default NOW(), 
     foreign key(institution_from) references institutions(id),
     primary key(id)
 );
