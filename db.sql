@@ -60,7 +60,7 @@ create table organ_requests (
     institution_to int,
     patient_id int,
     broadcast boolean,
-    sorted boolean default false,
+    sorted enum('PENDING', 'ACCEPTED', 'DECLINED') default 'PENDING',
     request_text longtext,
     date_of_request datetime default NOW(), 
     foreign key(institution_from) references institutions(id),

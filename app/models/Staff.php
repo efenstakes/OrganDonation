@@ -9,7 +9,7 @@
     contain data that has to do with a user.. 
     acts as the superclass for user-related classes
   */
-  class Staff extends User{
+  class Staff extends User {
     private $about_me = "", $specialty = NULL, 
             $institution = array( 'id' => NULL );
     private $db_handle = NULL;
